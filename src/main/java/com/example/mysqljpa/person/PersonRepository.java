@@ -1,4 +1,4 @@
-package com.example.mysqljpa;
+package com.example.mysqljpa.person;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

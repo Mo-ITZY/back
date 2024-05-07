@@ -1,5 +1,7 @@
-package com.example.mysqljpa;
+package com.example.mysqljpa.controller;
 
+import com.example.mysqljpa.person.Person;
+import com.example.mysqljpa.person.PersonRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
