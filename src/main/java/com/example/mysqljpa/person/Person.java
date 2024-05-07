@@ -15,7 +15,7 @@ public class Person {
     private Long id;
 
     @NonNull
-    @Column(unique = true, length=10) //유일하고 최대 길이가 10.
+    @Column(unique = true, length=10) //유일하고 최대 길이가 10
     private String personName;
     @Column(name="person_age")
     private int age;
