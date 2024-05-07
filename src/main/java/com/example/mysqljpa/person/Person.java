@@ -7,10 +7,10 @@ import lombok.Setter;
 
 @Entity //엔티티 정의
 @Table(name="person_table") //사용하지 않으면 클래스 이름이 테이블 이름이 됨
-@Getter //lombok getter
-@Setter //lombok setter
+@Getter //gettet
+@Setter //setter
 public class Person {
-    @Id //기본키를 의미. 반드시 기본키를 가져야함.
+    @Id //기본키를 의미.반드시 기본키를 가져야함.
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
