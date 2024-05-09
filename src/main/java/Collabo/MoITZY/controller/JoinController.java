@@ -26,4 +26,5 @@ public class JoinController {
         memberService.join(form);
         return "redirect:/mo-itzy/login"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
     }
+
 }
