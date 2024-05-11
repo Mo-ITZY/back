@@ -39,7 +39,7 @@ public class MemberService {
     }
 
     // 회원 단건 조회
-    public Optional<Member> findOne(Long memberId) {
-        return memberRepository.findOne(memberId);
+    public Optional<Member> findMember(String loginId) {
+        return memberRepository.findByLoginId(loginId);
     }
 }
