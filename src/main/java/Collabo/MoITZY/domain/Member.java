@@ -1,6 +1,7 @@
 package Collabo.MoITZY.domain;
 
 import Collabo.MoITZY.domain.embed.Address;
+import Collabo.MoITZY.web.validation.form.MemberJoinForm;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -34,10 +35,10 @@ public class Member {
     @NotBlank
     private String email;
 
-    private String img;
-
     @Embedded
     private Address address;
+
+    private String img;
 
     @OneToMany(mappedBy = "member") // Member는 여러 Review를 작성할 수 있다
     private List<Review> reviews = new ArrayList<>();
@@ -45,12 +46,22 @@ public class Member {
     @OneToMany(mappedBy = "member") // Member는 여러 ROI를 설정할 수 있다
     private List<ROI> roiList = new ArrayList<>();
 
-    public Member(String loginId, String name, String password, String email, String img, Address address) {
+    public Member(String loginId, String name, String password, String email, Address address, String img) {
         this.loginId = loginId;
         this.name = name;
         this.password = password;
         this.email = email;
         this.img = img;
         this.address = address;
+    }
+
+    public static Member createMember(MemberJoinForm memberJoinForm) {
+        return new Member(
+                memberJoinForm.getLoginId(),
+                memberJoinForm.getName(),
+                memberJoinForm.getPassword(),
+                memberJoinForm.getEmail(),
+                memberJoinForm.getAddress(),
+                null);
     }
 }
