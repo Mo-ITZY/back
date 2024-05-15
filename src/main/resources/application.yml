@@ -2,13 +2,13 @@ spring:
   application:
     name: Mo-ITZY
   datasource:
-    url: jdbc:mysql://localhost:3306/test1?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
+    url: jdbc:mysql://113.198.230.24:331/test?maxAllowedPacket=10000000&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8 # DB URL
+    username: admin
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create # create, update, validate, none
     show-sql: true
     properties:
       hibernate:
