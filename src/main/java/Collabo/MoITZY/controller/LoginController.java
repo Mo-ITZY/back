@@ -7,40 +7,46 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class LoginController {
 
     private final LoginService loginService;
 
-    // 로그인 페이지
-    @GetMapping("/mo-itzy/login")
-    public String loginForm(@ModelAttribute("MemberLoginForm") MemberLoginForm form) {
-        return "login/loginForm"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
-    }
+    @PostMapping("/login")
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> login(@Validated @RequestBody MemberLoginForm form, BindingResult bindingResult) {
+        System.out.println("LoginId: " + form.getLoginId());
+        System.out.println("Password: " + form.getPassword());
 
-    // 로그인
-    @PostMapping("/mo-itzy/login")
-    public String login(@Validated @ModelAttribute("MemberLoginForm") MemberLoginForm form, BindingResult bindingResult) {
+        Map<String, String> response = new HashMap<>();
 
-        // 로그인 실패 - 입력값 검증 실패
         if (bindingResult.hasErrors()) {
-            return "login/loginForm";
+            System.out.println("Validation errors: " + bindingResult.getAllErrors());
+            response.put("status", "failure");
+            response.put("message", "Validation errors");
+            return ResponseEntity.badRequest().body(response);
         }
 
-        Member loginMember = loginService.login(form);
+        Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
 
-        // 로그인 실패 - 아이디 또는 비밀번호가 맞지 않음
         if (loginMember == null) {
+            System.out.println("Login failed");
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "login/loginForm";
+            response.put("status", "failure");
+            response.put("message", "아이디 또는 비밀번호가 맞지 않습니다.");
+            return ResponseEntity.status(401).body(response);
         }
 
-        // 로그인 성공
-        return "redirect:/mo-itzy/"; // 여기에 리액트 메인 페이지 경로 맞추면 될듯
+        System.out.println("Login successful");
+        response.put("status", "success");
+        response.put("message", "Login successful");
+        return ResponseEntity.ok(response);
     }
 }
