@@ -2,7 +2,7 @@ spring:
   application:
     name: Mo-ITZY
   datasource:
-    url: jdbc:mysql://localhost:3306/test?maxAllowedPacket=10000000&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8 # DB URL
+    url: jdbc:mysql://localhost:3306/test?maxAllowedPacket=10000000&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowPublicKeyRetrieval=true # DB URL
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver # DB Driver
