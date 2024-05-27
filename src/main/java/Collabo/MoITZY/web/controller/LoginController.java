@@ -1,17 +1,17 @@
-package Collabo.MoITZY.controller;
+package Collabo.MoITZY.web.controller;
 
 import Collabo.MoITZY.domain.Member;
-import Collabo.MoITZY.service.LoginService;
+import Collabo.MoITZY.web.service.LoginService;
 import Collabo.MoITZY.web.validation.form.MemberLoginForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class LoginController {
 
@@ -20,6 +20,7 @@ public class LoginController {
     // 로그인 페이지
     @GetMapping("/mo-itzy/login")
     public String loginForm(@ModelAttribute("MemberLoginForm") MemberLoginForm form) {
+        // 모델에 담긴 정보를 리액트에서는 어떻게 사용할지..?
         return "login/loginForm"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
     }
 

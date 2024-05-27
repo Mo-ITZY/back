@@ -1,6 +1,6 @@
-package Collabo.MoITZY.controller;
+package Collabo.MoITZY.web.controller;
 
-import Collabo.MoITZY.service.MemberService;
+import Collabo.MoITZY.web.service.MemberService;
 import Collabo.MoITZY.web.validation.form.MemberJoinForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -8,14 +8,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
-public class JoinController {
+public class MemberController {
 
     private final MemberService memberService;
-
-    @GetMapping("/api/test")
-    public String test() {
-        return "test!!!!";
-    }
 
     // 회원 가입 페이지
     @GetMapping("/mo-itzy/join")
