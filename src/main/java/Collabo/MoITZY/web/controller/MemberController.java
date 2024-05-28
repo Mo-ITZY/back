@@ -15,13 +15,13 @@ public class MemberController {
     // 회원 가입 페이지
     @GetMapping("/mo-itzy/join")
     public String joinForm(@ModelAttribute("memberJoinForm") MemberJoinForm form) {
-        return "join/joinForm"; // 여기에 리액트 회원가입 페이지 경로 맞추면 될듯
+        return "/signin"; // 여기에 리액트 회원가입 페이지 경로 맞추면 될듯
     }
 
     // 회원 가입
     @PostMapping("/mo-itzy/join")
     public String join(@ModelAttribute("memberJoinForm") MemberJoinForm form) {
         memberService.join(form);
-        return "redirect:/mo-itzy/login"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
+        return "redirect:/login"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
     }
 }

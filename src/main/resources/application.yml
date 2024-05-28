@@ -3,6 +3,7 @@ spring:
     name: Mo-ITZY
 
   datasource:
+<<<<<<< HEAD
     url: jdbc:mysql://113.198.230.24:332/MoItzy?maxAllowedPacket=10000000&useSSL=false&serverTimezone=UTC
     username: root
     password: 1234
@@ -11,6 +12,16 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
+=======
+    url: jdbc:mysql://localhost:3306/test?maxAllowedPacket=10000000&useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8 # DB URL
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver # DB Driver
+  jpa:
+    hibernate:
+      ddl-auto: update # create, update, validate, none
+    show-sql: true
+>>>>>>> 309dbc54dbd260d8fbb097a16626eec427277cce
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
