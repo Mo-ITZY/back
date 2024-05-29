@@ -1,6 +1,6 @@
-package Collabo.MoITZY.web.controller;
+package Collabo.MoITZY.controller;
 
-import Collabo.MoITZY.web.service.MemberService;
+import Collabo.MoITZY.service.MemberService;
 import Collabo.MoITZY.web.validation.form.MemberJoinForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

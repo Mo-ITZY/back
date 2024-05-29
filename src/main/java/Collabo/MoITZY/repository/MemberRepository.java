@@ -1,4 +1,4 @@
-package Collabo.MoITZY.web.repository;
+package Collabo.MoITZY.repository;
 
 import Collabo.MoITZY.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;

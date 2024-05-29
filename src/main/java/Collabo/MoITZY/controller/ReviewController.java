@@ -1,7 +1,7 @@
-package Collabo.MoITZY.web.controller;
+package Collabo.MoITZY.controller;
 
 import Collabo.MoITZY.dto.ReviewDto;
-import Collabo.MoITZY.web.service.ReviewService;
+import Collabo.MoITZY.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

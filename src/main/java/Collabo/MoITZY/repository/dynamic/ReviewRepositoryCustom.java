@@ -1,4 +1,4 @@
-package Collabo.MoITZY.web.repository.dynamic;
+package Collabo.MoITZY.repository.dynamic;
 
 import Collabo.MoITZY.dto.ReviewDto;
 

@@ -1,7 +1,7 @@
-package Collabo.MoITZY.web.service;
+package Collabo.MoITZY.service;
 
 import Collabo.MoITZY.dto.ReviewDto;
-import Collabo.MoITZY.web.repository.ReviewRepository;
+import Collabo.MoITZY.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
