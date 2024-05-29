@@ -4,7 +4,6 @@ import Collabo.MoITZY.domain.Member;
 import Collabo.MoITZY.service.LoginService;
 import Collabo.MoITZY.web.validation.form.MemberLoginForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
 import java.util.Map;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class LoginController {
@@ -20,7 +19,6 @@ public class LoginController {
     private final LoginService loginService;
 
     @PostMapping("/login")
-    @ResponseBody
     public ResponseEntity<Map<String, String>> login(@Validated @RequestBody MemberLoginForm form, BindingResult bindingResult) {
         System.out.println("LoginId: " + form.getLoginId());
         System.out.println("Password: " + form.getPassword());
