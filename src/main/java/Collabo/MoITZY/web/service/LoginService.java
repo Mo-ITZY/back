@@ -1,4 +1,3 @@
-<<<<<<< HEAD:src/main/java/Collabo/MoITZY/web/service/LoginService.java
 package Collabo.MoITZY.web.service;
 
 import Collabo.MoITZY.domain.Member;
@@ -7,82 +6,23 @@ import Collabo.MoITZY.web.validation.form.MemberLoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-=======
-////package Collabo.MoITZY.service;
-////
-////import Collabo.MoITZY.domain.Member;
-////import Collabo.MoITZY.repository.MemberRepository;
-////import lombok.RequiredArgsConstructor;
-////import org.springframework.stereotype.Service;
-////
-////@Service
-////@RequiredArgsConstructor
-////public class LoginService {
-////
-////    private final MemberRepository memberRepository;
-////
-////    public Member login(String loginId, String password) {
-////        return memberRepository.findByLoginId(loginId)
-////                .filter(m -> m.getPassword().equals(password))
-////                .orElse(null);
-////    }
-////}
-//
-//
-//package Collabo.MoITZY.service;
-//
-//import Collabo.MoITZY.domain.Member;
-//import Collabo.MoITZY.repository.MemberRepository;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Service;
-//
-//@Service
-//@RequiredArgsConstructor
-//public class LoginService {
-//
-//    private final MemberRepository memberRepository;
-//
-//    public Member login(String loginId, String password) {
-//        Member member = memberRepository.findByLoginId(loginId).orElse(null);
-//        if (member != null && member.getPassword().equals(password)) {
-//            return member;
-//        } else {
-//            return null;
-//        }
-//    }
-//}
-//
 
-
-package Collabo.MoITZY.service;
-
-import Collabo.MoITZY.domain.Member;
-import Collabo.MoITZY.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
->>>>>>> 309dbc54dbd260d8fbb097a16626eec427277cce:src/main/java/Collabo/MoITZY/service/LoginService.java
+import java.util.Optional;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class LoginService {
 
     private final MemberRepository memberRepository;
 
-    public Member login(String loginId, String password) {
-        System.out.println("Attempting login for Login ID: " + loginId); // 입력된 Login ID 출력
-        Member member = memberRepository.findByLoginId(loginId).orElse(null);
-
-        if (member != null) {
-            System.out.println("Member found: " + member.getLoginId()); // 찾은 Member의 Login ID 출력
-            if (member.getPassword().equals(password)) {
-                System.out.println("Password match");
-                return member;
-            } else {
-                System.out.println("Password mismatch");
-            }
-        } else {
-            System.out.println("No member found with Login ID: " + loginId);
-        }
-        return null;
+    /**
+     * return null 이면 로그인 실패
+     * 로그인할 때 기입한 password와 db에 저장된 password가 같은지 확인하는 메소드
+     */
+    public Member login(MemberLoginForm member) {
+        return memberRepository.findByLoginId(member.getLoginId())
+                .filter(m -> m.getPassword().equals(member.getPassword()))
+                .orElse(null);
     }
 }

@@ -6,22 +6,16 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
 
-    // 회원 가입 페이지
-    @GetMapping("/mo-itzy/join")
-    public String joinForm(@ModelAttribute("memberJoinForm") MemberJoinForm form) {
-        return "/signin"; // 여기에 리액트 회원가입 페이지 경로 맞추면 될듯
-    }
-
     // 회원 가입
     @PostMapping("/mo-itzy/join")
-    public String join(@ModelAttribute("memberJoinForm") MemberJoinForm form) {
+    public String join(@RequestBody MemberJoinForm form) {
         memberService.join(form);
-        return "redirect:/login"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
+        return "회원 가입 완료";
     }
 }

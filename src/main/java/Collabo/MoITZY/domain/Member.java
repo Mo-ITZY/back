@@ -1,7 +1,6 @@
 package Collabo.MoITZY.domain;
 
 import Collabo.MoITZY.domain.embed.Address;
-import Collabo.MoITZY.repository.MemberRepository;
 import Collabo.MoITZY.web.validation.form.MemberJoinForm;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -25,16 +24,16 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
 
-    @NotBlank
+    //@NotBlank
     private String loginId;
 
-    @NotBlank
+    //@NotBlank
     private String name;
 
-    @NotBlank
+    //@NotBlank
     private String password;
 
-    @NotBlank
+    //@NotBlank
     private String email;
 
     @Embedded
