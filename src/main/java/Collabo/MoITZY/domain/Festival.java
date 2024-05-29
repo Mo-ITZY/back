@@ -14,6 +14,7 @@ import java.util.List;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
+@Table(name = "festival")
 @NoArgsConstructor(access = PROTECTED)
 @Getter
 @ToString(of = {
@@ -67,5 +68,13 @@ public class Festival {
         this.description = description;
         this.place = place;
         this.period = period;
+    }
+
+    public void addROI(ROI roi) {
+        roiList.add(roi);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
     }
 }

@@ -10,6 +10,7 @@ import static jakarta.persistence.FetchType.*;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
+@Table(name = "review")
 @NoArgsConstructor(access = PROTECTED)
 @Getter
 @ToString(of = {"id", "img", "content"})
@@ -31,7 +32,9 @@ public class Review {
     @NotNull
     private String content;
 
-    public Review(String img, String content) {
+    public Review(Member member, Festival festival, String img, String content) {
+        this.member = member;
+        this.festival = festival;
         this.img = img;
         this.content = content;
     }

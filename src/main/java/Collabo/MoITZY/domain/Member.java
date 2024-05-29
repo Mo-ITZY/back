@@ -15,6 +15,7 @@ import java.util.List;
 import static lombok.AccessLevel.PROTECTED;
 
 @Entity
+@Table(name = "member")
 @NoArgsConstructor(access = PROTECTED)
 @Getter
 @ToString(of = {"id", "loginId", "name", "password", "email", "img", "address"})
@@ -64,5 +65,14 @@ public class Member {
                 memberJoinForm.getEmail(),
                 memberJoinForm.getAddress(),
                 null);
+    }
+
+    public void addROI(ROI roi) {
+        roiList.add(roi);
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+
     }
 }

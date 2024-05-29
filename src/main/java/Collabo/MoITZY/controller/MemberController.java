@@ -3,14 +3,12 @@ package Collabo.MoITZY.controller;
 import Collabo.MoITZY.service.MemberService;
 import Collabo.MoITZY.web.validation.form.MemberJoinForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequiredArgsConstructor
-public class JoinController {
+public class MemberController {
 
     private final MemberService memberService;
 

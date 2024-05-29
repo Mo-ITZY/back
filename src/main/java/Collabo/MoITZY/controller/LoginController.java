@@ -6,6 +6,10 @@ import Collabo.MoITZY.web.validation.form.MemberLoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import java.util.HashMap;
@@ -18,10 +22,16 @@ public class LoginController {
 
     private final LoginService loginService;
 
+    // 로그인 페이지
+    @GetMapping("/mo-itzy/login")
+    public String loginForm(@ModelAttribute("MemberLoginForm") MemberLoginForm form) {
+        // 모델에 담긴 정보를 리액트에서는 어떻게 사용할지..?
+        return "login/loginForm"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
+    }
+
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> login(@Validated @RequestBody MemberLoginForm form, BindingResult bindingResult) {
         System.out.println("LoginId: " + form.getLoginId());
-        System.out.println("Password: " + form.getPassword());
 
         Map<String, String> response = new HashMap<>();
 
