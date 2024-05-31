@@ -1,4 +1,4 @@
-package Collabo.MoITZY.repository;
+package Collabo.MoITZY.web.repository;
 
 
 import Collabo.MoITZY.domain.Festival;

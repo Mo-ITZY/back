@@ -1,7 +1,7 @@
-package Collabo.MoITZY.service;
+package Collabo.MoITZY.web.service;
 
 import Collabo.MoITZY.domain.Member;
-import Collabo.MoITZY.repository.MemberRepository;
+import Collabo.MoITZY.web.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

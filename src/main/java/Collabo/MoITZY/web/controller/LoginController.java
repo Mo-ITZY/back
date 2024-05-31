@@ -1,7 +1,7 @@
-package Collabo.MoITZY.controller;
+package Collabo.MoITZY.web.controller;
 
 import Collabo.MoITZY.domain.Member;
-import Collabo.MoITZY.service.LoginService;
+import Collabo.MoITZY.web.service.LoginService;
 import Collabo.MoITZY.web.validation.form.MemberLoginForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
@@ -35,7 +35,7 @@ public class LoginController {
 
         Map<String, String> response = new HashMap<>();
 
-        if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) { // 입력값 검증
             System.out.println("Validation errors: " + bindingResult.getAllErrors());
             response.put("status", "failure");
             response.put("message", "Validation errors");
@@ -44,7 +44,7 @@ public class LoginController {
 
         Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
 
-        if (loginMember == null) {
+        if (loginMember == null) { // 로그인 실패
             System.out.println("Login failed");
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
             response.put("status", "failure");
