@@ -20,6 +20,6 @@ public class ReviewController {
     // 리뷰 페이지 요청
     @GetMapping("mo-itzy/festivals/{festival_id}/review")
     public List<ReviewDto> reviewForm(@PathVariable("festival_id") Long festivalId) {
-        return reviewService.findReviewByFestival(festivalId);
+        return reviewService.findReviewOfFestival(festivalId);
     }
 }

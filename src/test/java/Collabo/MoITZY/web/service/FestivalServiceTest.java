@@ -63,4 +63,13 @@ class FestivalServiceTest {
             log.info("festival: {}", festival);
         }
     }
+
+    @Test
+    void findFestivalsTest() {
+        // given
+
+
+        // when
+        // then
+    }
 }

@@ -47,10 +47,10 @@ public class InitDB {
         private final EntityManager em;
 
         public void dummyInit() {
-            Member member = new Member("tmdduq1999", "seungyeop", "1234", "tmdduq1999@naver.com", new Address("경상남도", "김해시", "부곡로 10", "413동 1403호"), null);
+            Member member = new Member("로그인 아이디", "이름", "비밀번호", "회원 이메일", new Address("특별시, 광역시, 도", "시, 군, 구", "동, 읍, 면", "상세 주소"), "회원 이미지 주소");
             em.persist(member);
 
-            Festival festival = new Festival("부산연등회", "축제 이미지 주소", 0.0, 0.0, "교통 정보", "무료", "051)123-4567", "홈페이지 주소", "상세 설명", "편의시설", new Address("부산광역시", "부산진구", "부전동", "부산광역시 부산진구 부전동 1-1"), new Period(LocalDateTime.now(), LocalDateTime.now()));
+            Festival festival = new Festival("이름", "이미지 주소", 0.0, 0.0, "교통 정보", "비용", "연락처", "홈페이지 주소", "상세 설명", "편의시설", new Address("특별시, 광역시, 도", "시, 군, 구", "동, 읍, 면", "상세 주소"), new Period(LocalDateTime.now(), LocalDateTime.now()));
             em.persist(festival);
 
             ROI roi = new ROI(member, festival);
@@ -59,7 +59,7 @@ public class InitDB {
             Review review = new Review(member, festival, "리뷰 이미지 주소", "리뷰 내용");
             em.persist(review);
 
-            Inform inform = new Inform("공지사항1", "공지사항 내용1", LocalDateTime.now());
+            Inform inform = new Inform("제목", "내용", LocalDateTime.now());
             em.persist(inform);
 
             List<Review> reviews1 = member.getReviews();

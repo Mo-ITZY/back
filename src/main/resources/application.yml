@@ -3,7 +3,7 @@ spring:
     name: Mo-ITZY
 
   datasource:
-    url: jdbc:mysql://113.198.230.24:332/MoItzy?maxAllowedPacket=10000000&useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://113.198.230.24:332/MoItzy?maxAllowedPacket=10000000&useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
