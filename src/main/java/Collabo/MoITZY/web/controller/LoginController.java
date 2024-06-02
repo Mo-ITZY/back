@@ -4,24 +4,22 @@ import Collabo.MoITZY.domain.Member;
 import Collabo.MoITZY.web.service.LoginService;
 import Collabo.MoITZY.web.validation.form.MemberLoginForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
+@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class LoginController {
 
     private final LoginService loginService;
 
-    // 로그인 페이지
-    @GetMapping("/mo-itzy/login")
-    public String loginForm(@ModelAttribute("MemberLoginForm") MemberLoginForm form) {
-        return "login/loginForm"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
-    }
+//    // 로그인 페이지
+//    @GetMapping("/mo-itzy/login")
+//    public String loginForm(@ModelAttribute("MemberLoginForm") MemberLoginForm form) {
+//        return "login/loginForm"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
+//    }
 
     // 로그인
     @PostMapping("/mo-itzy/login")

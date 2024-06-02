@@ -1,2 +1,4 @@
-package Collabo.MoITZY.web.repository.dynamic;public class FestivalRepositoryImpl {
+package Collabo.MoITZY.web.repository.dynamic;
+
+public class FestivalRepositoryImpl {
 }
