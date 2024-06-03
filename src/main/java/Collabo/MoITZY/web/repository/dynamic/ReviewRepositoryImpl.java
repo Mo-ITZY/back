@@ -8,6 +8,8 @@ import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+import static Collabo.MoITZY.domain.QReview.review;
+
 public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
 
     private final JPAQueryFactory queryFactory;
@@ -19,8 +21,8 @@ public class ReviewRepositoryImpl implements ReviewRepositoryCustom {
     // 리뷰 조회
     @Override
     public List<ReviewDto> findReviewDtos(Long festivalId) {
-        QReview review = QReview.review;
-        List<ReviewDto> result = queryFactory.select(Projections.constructor(ReviewDto.class,
+        List<ReviewDto> result = queryFactory
+                .select(Projections.constructor(ReviewDto.class,
                         review.member.img,
                         review.member.name,
                         review.img,

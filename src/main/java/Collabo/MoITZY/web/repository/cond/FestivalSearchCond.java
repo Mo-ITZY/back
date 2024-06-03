@@ -1,4 +1,4 @@
-package Collabo.MoITZY.web.service.cond;
+package Collabo.MoITZY.web.repository.cond;
 
 import lombok.Getter;
 import lombok.Setter;
