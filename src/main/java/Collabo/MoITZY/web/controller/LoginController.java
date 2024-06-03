@@ -15,12 +15,6 @@ public class LoginController {
 
     private final LoginService loginService;
 
-//    // 로그인 페이지
-//    @GetMapping("/mo-itzy/login")
-//    public String loginForm(@ModelAttribute("MemberLoginForm") MemberLoginForm form) {
-//        return "login/loginForm"; // 여기에 리액트 로그인 페이지 경로 맞추면 될듯
-//    }
-
     // 로그인
     @PostMapping("/mo-itzy/login")
     public String login(@Validated @ModelAttribute("MemberLoginForm") MemberLoginForm form, BindingResult bindingResult) {
