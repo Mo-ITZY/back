@@ -18,13 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.net.URI;
 
 @Slf4j
 @Component
@@ -37,7 +35,7 @@ public class InitDB {
     @PostConstruct
     public void init() {
 //        initService.dummyInit();
-//        festivalApiInitService.initApi();
+        festivalApiInitService.initApi();
     }
 
     @Component
@@ -47,10 +45,13 @@ public class InitDB {
         private final EntityManager em;
 
         public void dummyInit() {
-            Member member = new Member("로그인 아이디", "이름", "비밀번호", "회원 이메일", new Address("특별시, 광역시, 도", "시, 군, 구", "동, 읍, 면", "상세 주소"), "회원 이미지 주소");
+            Member member = new Member("로그인 아이디", "이름", "비밀번호", "회원 이메일",
+                    new Address("특별시, 광역시, 도", "시, 군, 구", "동, 읍, 면", "상세 주소"), "회원 이미지 주소");
             em.persist(member);
 
-            Festival festival = new Festival("이름", "이미지 주소", 0.0, 0.0, "교통 정보", "비용", "연락처", "홈페이지 주소", "상세 설명", "편의시설", new Address("특별시, 광역시, 도", "시, 군, 구", "동, 읍, 면", "상세 주소"), new Period(LocalDateTime.now(), LocalDateTime.now()));
+            Festival festival = new Festival("이름", "이미지 주소", 0.0, 0.0, "교통 정보", "비용", "연락처", "홈페이지 주소", "상세 설명", "편의시설",
+                    new Address("특별시, 광역시, 도", "시, 군, 구", "동, 읍, 면", "상세 주소"),
+                    new Period(LocalDateTime.now(), LocalDateTime.now()));
             em.persist(festival);
 
             ROI roi = new ROI(member, festival);
@@ -94,8 +95,6 @@ public class InitDB {
     @RequiredArgsConstructor
     @Slf4j
     static class FestivalApiInitService {
-        private static final String API_URL = "http://apis.data.go.kr/6260000/FestivalService/getFestivalKr";
-        private static final String API_KEY = "MvwRp6lI%2B00uP5QO2M1i1tLd2Rfn5pCVX0byg6cZLvujlrwGQt0EfinPijBsw8XCuiYQRvTTp%2F1%2F13BjQ%2Bka7Q%3D%3D";
 
         private final FestivalRepository festivalRepository;
         private final FestivalService festivalService;
@@ -104,21 +103,23 @@ public class InitDB {
             RestTemplate restTemplate = new RestTemplate();
             restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
 
-            // API 키 디코딩
-            String decodedApiKey = URLDecoder.decode(API_KEY, StandardCharsets.UTF_8);
+            String API_KEY = "MvwRp6lI+00uP5QO2M1i1tLd2Rfn5pCVX0byg6cZLvujlrwGQt0EfinPijBsw8XCuiYQRvTTp/1/13BjQ+ka7Q==";
+            String encodedApiKey = URLEncoder.encode(API_KEY, StandardCharsets.UTF_8);
 
-            String url = UriComponentsBuilder.fromHttpUrl(API_URL)
-                    .queryParam("resultType", "JSON")
+            URI uri = UriComponentsBuilder
+                    .fromUriString("https://apis.data.go.kr/6260000/FestivalService/getFestivalKr")
+                    .queryParam("serviceKey", encodedApiKey)
                     .queryParam("numOfRows", 10)
                     .queryParam("pageNo", 1)
-                    .queryParam("serviceKey", decodedApiKey)
-                    .toUriString();
+                    .queryParam("resultType", "JSON")
+                    .build(true)
+                    .toUri();
 
             log.info("API_KEY: {}", API_KEY);
-            log.info("Decoded API_KEY: {}", decodedApiKey);
-            log.info("url: {}", url);
+            log.info("Decoded API_KEY: {}", encodedApiKey);
+            log.info("url: {}", uri);
 
-            String body = restTemplate.getForEntity(url, String.class).getBody();
+            String body = restTemplate.getForEntity(uri, String.class).getBody();
 
             log.info("body: {}", body);
 

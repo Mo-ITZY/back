@@ -3,7 +3,6 @@ package Collabo.MoITZY.domain.embed;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.time.LocalDateTime;
 
