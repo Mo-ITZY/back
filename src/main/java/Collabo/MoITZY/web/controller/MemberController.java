@@ -6,13 +6,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173")
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
 
-    // 회원 가입
+    // 회원 가입git
     @PostMapping("/mo-itzy/join")
     public String join(@RequestBody MemberJoinForm form) {
         memberService.join(form);

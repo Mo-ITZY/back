@@ -1,6 +1,5 @@
 package Collabo.MoITZY.web.repository.dynamic;
 
-import Collabo.MoITZY.domain.QReview;
 import Collabo.MoITZY.dto.ReviewDto;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;

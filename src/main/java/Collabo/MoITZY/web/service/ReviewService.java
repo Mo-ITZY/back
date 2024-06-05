@@ -21,7 +21,7 @@ public class ReviewService {
     }
 
     // 리뷰 조회
-    public List<ReviewDto> findReviewByFestival(Long festivalId) {
+    public List<ReviewDto> findReviewOfFestival(Long festivalId) {
         return reviewRepository.findReviewDtos(festivalId);
     }
 

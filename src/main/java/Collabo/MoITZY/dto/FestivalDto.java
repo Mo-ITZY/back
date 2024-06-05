@@ -2,10 +2,6 @@ package Collabo.MoITZY.dto;
 
 import Collabo.MoITZY.domain.embed.Address;
 import Collabo.MoITZY.domain.embed.Period;
-import Collabo.MoITZY.domain.embed.QAddress;
-import Collabo.MoITZY.domain.embed.QPeriod;
-import com.querydsl.core.types.dsl.NumberPath;
-import com.querydsl.core.types.dsl.StringPath;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;

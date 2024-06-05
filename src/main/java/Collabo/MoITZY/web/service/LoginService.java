@@ -2,38 +2,43 @@ package Collabo.MoITZY.web.service;
 
 import Collabo.MoITZY.domain.Member;
 import Collabo.MoITZY.web.repository.MemberRepository;
+import Collabo.MoITZY.web.validation.form.MemberLoginForm;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.dao.IncorrectResultSizeDataAccessException; // 추가
+import org.springframework.transaction.annotation.Transactional;
 
+@Slf4j
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class LoginService {
 
     private final MemberRepository memberRepository;
 
-    public Member login(String loginId, String password) {
-        System.out.println("Attempting login for Login ID: " + loginId);
+    /**
+     * return null 이면 로그인 실패
+     * 로그인할 때 기입한 password와 db에 저장된 password가 같은지 확인하는 메소드
+     */
+    public Member login(MemberLoginForm form) {
+        log.info("attempting loginId={}", form.getLoginId());
 
-        try {  // 중복된 멤버 검색 시 예외 처리 및 null 반환, 비밀번호 불일치 시 null 반환
-            Member member = memberRepository.findByLoginId(loginId)
-                    .orElseThrow(() -> new IllegalArgumentException("No member found with Login ID: " + loginId));
+        // 중복된 멤버 검색 시 예외 처리 및 null 반환, 비밀번호 불일치 시 null 반환
+        Member findMember = memberRepository.findByLoginId(form.getLoginId())
+                .filter(m -> m.getPassword().equals(form.getPassword()))
+                .orElse(null);
 
-            System.out.println("Member found: " + member.getLoginId());
+        log.info("findMember={} ", form.getLoginId());
 
-            if (member.getPassword().equals(password)) {
-                System.out.println("Password match");
-                return member;
-            } else {
-                System.out.println("Password mismatch");
-                return null; // 비밀번호 불일치 시 null 반환
-            }
-        } catch (IncorrectResultSizeDataAccessException ex) {
-            System.out.println("Multiple members found with Login ID: " + loginId);
-            // 여러 개의 결과가 반환되는 경우 예외 처리
-            // 예외를 처리하는 방법은 상황에 따라 달라질 수 있음
-            // 여기서는 예외를 잡고 null을 반환하여 처리하도록 함
+        if (findMember == null) {
+            log.info("Login failed");
             return null;
         }
+
+        log.info("Login successful");
+        return findMember;
     }
 }
+
+
+
