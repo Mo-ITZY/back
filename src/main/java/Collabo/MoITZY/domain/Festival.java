@@ -23,8 +23,7 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @Getter
 @ToString(of = {
-    "id", "name", "img", "LAT", "LNG", "trafficInfo", "expense", "contact",
-        "homepage", "description", "facilities", "place", "period"
+    "id", "name", "img", "LAT", "LNG", "trafficInfo", "expense", "contact", "homepage", "description", "facilities", "place", "period"
 })
 public class Festival {
 
